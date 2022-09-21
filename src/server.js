@@ -14,6 +14,20 @@ app.get('/', (req, res, next) => {
 app.get('/bad', (req, res, next) => {
   next('incorrect route');
 });
+app.get('/person', (req, res, next) => {
+  let {personName}=req.query;
+
+  try{
+    if(personName){
+      res.status(200).send(`The name is ${personName}`);
+    }else {
+      res.status(200).send(`it is nice to meet them`);
+    }
+  }catch(err){
+    next(err.message);
+  }
+});
+
 
 
 app.use('*', notFound);

@@ -5,7 +5,7 @@ const notFound = require('./error-handlers/404');
 const errorHandler = require('./error-handlers/500');
 const app = express();
 const PORT = process.env.PORT || 3002;
-
+const validator = require('./middleware/validator');
 //Routes
 app.get('/', (req, res, next) => {
   res.status(200).send('Welcome!');
@@ -21,7 +21,7 @@ app.get('/person', (req, res, next) => {
     if(personName){
       res.status(200).send(`The name is ${personName}`);
     }else {
-      res.status(200).send(`it is nice to meet them`);
+      res.status(200).send(`It is nice to meet them`);
     }
   }catch(err){
     next(err.message);
